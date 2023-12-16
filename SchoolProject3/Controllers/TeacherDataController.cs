@@ -354,6 +354,7 @@ namespace SchoolProject3.Controllers
         ///    "teacherlname" : "Frederick"
         /// }
         /// </example>
+        /// <return></return>
         [HttpPost]
         [Route("api/TeacherData/UpdateTeacher/{TeacherId}")]
         public void UpdateTeacher(int TeacherId, [FromBody]Teacher UpdateTeacher) 

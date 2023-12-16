@@ -141,7 +141,7 @@ namespace SchoolProject3.Controllers
 
             //Teacherfname itself
             Debug.WriteLine("The teacher id is " +id);
-            Debug.WriteLine("The teacher id is " +UpdateTeacher.teacherfname);
+            Debug.WriteLine("The teacherfname is " +UpdateTeacher.teacherfname);
 
 
 
