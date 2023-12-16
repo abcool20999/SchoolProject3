@@ -1,0 +1,34 @@
+﻿<!--This defines the model type for this view, specifying it as a teacher object-->
+
+@model SchoolProject3.Models.Teacher
+
+
+<!--Set the title of the page to "List" in the ViewBag-->
+@{
+    ViewBag.Title = "Show";
+}
+
+
+<div>
+    <a style="color:darkred; display:inline-block; margin-right:20px;"  
+         href="/Teacher/DeleteConfirm/@Model.teacherId ">Delete Teacher</a>
+    
+    <a href="/Teacher/Update/@Model.teacherId">Update</a>
+</div>
+
+
+<!--Display the teacher first and lastname using the value from the Teacher model.-->
+<h2>@Model.teacherfname @Model.teacherlname</h2>
+
+<!--Display a heading indicating the employee number of the teacher using the value from the Teacher model.-->
+<p>emp no @Model.employeenumber</p>
+
+<!--Displays the hire date of the teacher using the value from the Teacher model.-->
+<p>hire date @Model.hiredate</p>
+
+<!--Displays the salary of the teacher using the value from the Teacher model.-->
+<p>salary @Model.salary</p>
+
+<!--Displays the classname of the teacher using the value from the Teacher model.-->
+<p>classname @Model.classname</p>
+

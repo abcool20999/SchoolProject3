@@ -1,0 +1,34 @@
+﻿<!--This defines the model type for this view, indicating it will be an IEnumerable of Teacher objects-->
+
+@model IEnumerable<SchoolProject3.Models.Teacher>
+
+
+<!--Set the title of the page to "List" in the ViewBag-->
+@{
+    ViewBag.Title = "List";
+}
+
+<a href="/Teacher/New">Add a New Teacher</a>
+
+<h2>I want to display a list of teachers</h2>
+
+<form action="/Teacher/List" method="get">
+    <div>
+        <input type="text" name="TeacherSearchKey" />
+        <input type="submit" value="Search" />
+    </div>
+
+</form>
+
+<!--loop through each Teacher object in the Model and for each Teacher object display its properties-->
+
+@{
+    foreach (SchoolProject3.Models.Teacher Teachers in Model)
+    {
+        <div><a href="/Teacher/Show/@Teachers.teacherId">@Teachers.teacherfname @Teachers.teacherlname</a></div>
+    }
+}
+
+
+
+

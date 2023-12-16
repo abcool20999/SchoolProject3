@@ -1,0 +1,169 @@
+﻿
+@model SchoolProject3.Models.Teacher
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>New Teacher</h2>
+
+<!--ask the user for the teacher information-->
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        @*<legend>User</legend>*@
+        <div class="editor-label">
+            @Html.LabelFor(model => model.teacherfname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.teacherfname)
+
+            <!--teacher first name input validation for the Client side-->
+            @Html.ValidationMessageFor(model => model.teacherfname)
+
+            <!--teacher firstname input validation for the server side-->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                //Display element for server side validation error message
+                <span class="field-validation-error">
+                    @(ViewData.ModelState["newTeacher.teacherfname"] == null?
+
+                    ViewData.ModelState["teacherfname"].Errors[0].ErrorMessage:
+                    ViewData.ModelState["newTeacher.teacherfname"].Errors[0].ErrorMessage)
+                </span>
+            }
+
+        </div>
+        <div class="editor-label">
+
+            @Html.LabelFor(model => model.teacherlname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.teacherlname)
+            <!--teacher last name input validation for the Client side-->
+            @Html.ValidationMessageFor(model => model.teacherlname)
+            <!--teacher last name input validation for the server side-->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <span class="field-validation-error">
+                    @(ViewData.ModelState["newTeacher.teacherlname"] == null?
+
+                    ViewData.ModelState["teacherlname"].Errors[0].ErrorMessage:
+                    ViewData.ModelState["newTeacher.teacherlname"].Errors[0].ErrorMessage)
+                </span>
+            }
+        </div>
+        <div class="editor-label">
+
+            @Html.LabelFor(model => model.employeenumber)
+        </div>
+
+        <div class="editor-field">
+
+            @Html.EditorFor(model => model.employeenumber)
+            <!--teacher employeenumber input validation for the Client side-->
+            @Html.ValidationMessageFor(model => model.employeenumber)
+            <!--teacher employeenumber input validation for the Server side-->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <span class="field-validation-error">
+                    @(ViewData.ModelState["newTeacher.employeenumber"] == null?
+
+                    ViewData.ModelState["employeenumber"].Errors[0].ErrorMessage:
+                    ViewData.ModelState["newTeacher.employeenumber"].Errors[0].ErrorMessage)
+                </span>
+            }
+        </div>
+        <div class="editor-label">
+
+            @Html.LabelFor(model => model.salary)
+        </div>
+
+        <div class="editor-field">
+
+            @Html.EditorFor(model => model.salary)
+            <!--teacher salary input validation for the Client side-->
+            @Html.ValidationMessageFor(model => model.salary)
+            <!--teacher salary input validation for the Server side-->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <span class="field-validation-error">
+                    @(ViewData.ModelState["newTeacher.salary"] == null?
+
+                    ViewData.ModelState["salary"].Errors[0].ErrorMessage:
+                    ViewData.ModelState["newTeacher.salary"].Errors[0].ErrorMessage)
+                </span>
+            }
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts
+{
+    @*JavaScript and AJAX to send an XHR request for adding a teacher*@
+    <script type="text/javascript">
+    $(function () {
+        //alert("window ready")
+//when form is submitted
+        $("input[type = 'submit'").click(function (e) {
+            //e.preventDefault();
+           // alert("submit clicked");
+//create variables for all inputs
+            var teacher = {};
+            teacher.teacherfname = $("#teacherfname").val();
+            teacher.teacherlname = $("#teacherlname").val();
+            teacher.employeenumber = $("#employeenumber").val();
+            teacher.salary = $("#salary").val();
+            //if (teacher.teacherfname.trimStart().trimEnd() == "" ||
+            //    teacher.teacherlname.trimStart().trimEnd() == "" ||
+            //    teacher.employeenumber.trimStart().trimEnd() == "" ||
+            //    teacher.salary.trimStart().trimEnd() == "" ||
+            //    parseFloat(teacher.salary) == NaN
+            //) {
+            //    alert("Invalid item")
+            //    return
+            //}
+//ajax request for adding a teacher
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create")',
+                data: '{newTeacher:' + JSON.stringify(teacher) + '}',
+                dataType: "html",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                  //  alert("Data has been added successfully.");
+                    $("html").html(response);
+                },
+                error: function (err) {
+                    console.log(err);
+                //    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+    </script>
+
+    <script>
+                //    alert("after jquery")
+    </script>
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+
+
+    <!-- jQuery Scripts for Client Side Validation-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <!-- jQuery Unobtrusive Validation (to bridge ASP.NET Core MVC validation with jQuery Validate) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+}
+
