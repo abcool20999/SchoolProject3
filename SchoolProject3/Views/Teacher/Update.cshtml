@@ -8,9 +8,9 @@
 
 <h2>Update a specific Teacher</h2>
 
-<p>@Model.teacherfname</p>
 
-<form action="/Teacher/Update/@Model.teacherfname" method="POST">
+
+<form action="/Teacher/Edit/@Model.teacherId" method="POST">
     <div>
         <label>Firstname:</label>
         <input type="text" value="@Model.teacherfname" name="teacherfname" />

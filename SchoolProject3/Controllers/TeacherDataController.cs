@@ -329,6 +329,10 @@ namespace SchoolProject3.Controllers
         /// <param name="TeacherId">The TeacherId to update</param>
         /// <param name="UpdateTeacher">A Teacher object containing the new information</param>
         /// <example>
+        /// curl -d @teacher2.json -H "Content-Type: application/json"
+        /// http://localhost52959/api/Teacherdata/UpdateTeacher/Id
+        /// </example>
+        /// <example>
         /// OPTION 1
         ///
         /// POST api/TeacherData/UpdateTeacher/4
@@ -368,8 +372,9 @@ namespace SchoolProject3.Controllers
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand();
 
-           string query = "update Teachers set teacherfname=@fname, teacherlname=@lname, " +
-                   "salary=@salary, employeenumber=@employeenumber where TeacherId=@id";
+           string query = "UPDATE Teachers SET teacherfname = @fname, teacherlname = @lname, " +
+                           "salary = @salary, employeenumber = @employeenumber WHERE TeacherId = @id";
+
             cmd.CommandText = query;
             cmd.Parameters.AddWithValue("@fname", UpdateTeacher.teacherfname);
             cmd.Parameters.AddWithValue("@lname", UpdateTeacher.teacherlname);
