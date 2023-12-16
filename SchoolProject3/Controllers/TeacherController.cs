@@ -127,13 +127,13 @@ namespace SchoolProject3.Controllers
             return View(SelectedTeacher);
         }
 
-        //POST: /Teacher/Update/{TeacherId}
+        //POST: /Teacher/Edit/{TeacherId}
         //actually updates the teacher
         //redirect to the show teacher page
         [HttpPost]
-        public ActionResult Update(int id,  Teacher UpdateTeacher)
+        public ActionResult Edit(int id,  Teacher UpdateTeacher)
         {
-
+           
 
             //confirm we receive the information
 
