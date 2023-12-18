@@ -130,33 +130,72 @@ namespace SchoolProject3.Controllers
         //POST: /Teacher/Edit/{TeacherId}
         //actually updates the teacher
         //redirect to the show teacher page
-        [HttpPost]
-        public ActionResult Edit(int id,  Teacher UpdateTeacher)
-        {
-           
 
+
+        /// <summary>
+        /// Receives a POST request containing information about an existing teacher in the system, with new values. Conveys this information to the API, and redirects to the "teacher Show" page of our updated teacher.
+        /// </summary>
+        /// <param name="id">Id of the Teacher to update</param>
+        /// <param name="teacherfname">The updated first name of the teacher</param>
+        /// <param name="teacherlname">The updated last name of the teacher</param>
+        /// <param name="salary">The updated salary of the teacher</param>
+        /// <param name="employeenumber">The updated employeenumber of the teacher.</param>
+        /// <returns>A dynamic webpage which provides the current information of the teacher.</returns>
+        /// <example>
+        /// POST : /Teacher/Update/10
+        /// FORM DATA / POST DATA / REQUEST BODY 
+        /// {
+        ///	"teacherfname":"James",
+        ///	"teacherlname":"Knowles",
+        ///	"salary":"79.67",
+        ///	"employeenumber":"T369"
+        /// }
+        /// </example>
+        [HttpPost]
+        public ActionResult Edit(int id, string teacherfname, string teacherlname, string salary, string employeenumber)
+        {
+
+            
+
+            Teacher TeacherInfo = new Teacher();
+            TeacherInfo.teacherfname = teacherfname;
+            TeacherInfo.teacherlname = teacherlname;
+            TeacherInfo.salary = salary;
+            TeacherInfo.employeenumber = employeenumber;
+
+            //Teacherfname itself
+            Debug.WriteLine("The teacher id is " + id);
+            Debug.WriteLine("The teacherfname is " + TeacherInfo.teacherfname);
+
+
+            //update the Teacher
+            TeacherDataController controller = new TeacherDataController();
+            controller.UpdateTeacher(id, TeacherInfo);
+            
+            //return to the show page
+            return RedirectToAction("Show/" + id);
             //confirm we receive the information
 
             //TeacherId
 
-            //Teacherfname itself
-            Debug.WriteLine("The teacher id is " +id);
-            Debug.WriteLine("The teacherfname is " +UpdateTeacher.teacherfname);
+           
 
 
+            
 
-            //update the Teacher
+            
 
-            TeacherDataController Controller = new TeacherDataController();
-
-            Controller.UpdateTeacher(id, UpdateTeacher);
-
-            //return to the show page
-            return RedirectToAction("Show/" +id);
+            
+            
 
 
         }
     }
 
 
-} 
+}
+
+
+
+
+       

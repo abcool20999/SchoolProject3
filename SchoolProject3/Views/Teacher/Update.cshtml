@@ -1,6 +1,7 @@
-﻿@model SchoolProject3.Models.Teacher
+﻿
 
 
+@model SchoolProject3.Models.Teacher
 
 @{
     ViewBag.Title = "Update";
@@ -8,13 +9,12 @@
 
 <h2>Update a specific Teacher</h2>
 
-
-
 <form action="/Teacher/Edit/@Model.teacherId" method="POST">
+    
+
     <div>
         <label>Firstname:</label>
         <input type="text" value="@Model.teacherfname" name="teacherfname" />
-
     </div>
 
     <div>
@@ -32,11 +32,9 @@
         <input type="text" value="@Model.salary" name="salary" />
     </div>
 
-
     <div>
-
         <input type="submit" value="Update Teacher" />
     </div>
-
 </form>
+
 

@@ -381,7 +381,7 @@ namespace SchoolProject3.Controllers
             cmd.Parameters.AddWithValue("@lname", UpdateTeacher.teacherlname);
             cmd.Parameters.AddWithValue("@salary", UpdateTeacher.salary);
             cmd.Parameters.AddWithValue("@employeenumber", UpdateTeacher.employeenumber);
-            cmd.Parameters.AddWithValue("@id", UpdateTeacher.teacherId);
+            cmd.Parameters.AddWithValue("@id", TeacherId);
 
             cmd.Prepare();
 
